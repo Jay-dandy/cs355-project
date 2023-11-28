@@ -2,6 +2,14 @@ import socket
 import pyDH
 
 def bob_client():
+    # read files and hash them
+    hashes = []
+    for i in range(1, 6):
+        f = open(str(i) + ".txt", "r")
+        hashes.append(hash(f.read()))
+
+        print("Your file " + str(i) + " hash is " + str(hashes[i - 1]))
+
     # initialize Diffie-Hellman for Bob
     bob_dh = pyDH.DiffieHellman()
     bob_public_key = bob_dh.gen_public_key()

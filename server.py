@@ -9,6 +9,14 @@ import socket
 import pyDH
 
 def alice_server():
+    # read files and hash them
+    hashes = []
+    for i in range(1, 6):
+        f = open(str(i)+".txt", "r")
+        hashes.append(hash(f.read()))
+
+        print("Your file " + str(i) + " hash is " + str(hashes[i-1]))
+
     # initialize DH object for Alice
     alice_dh = pyDH.DiffieHellman()
     alice_public_key = alice_dh.gen_public_key()
